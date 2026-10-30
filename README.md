@@ -12,6 +12,18 @@ Skills para o Claude Code ajudar você a criar interfaces bonitas e testar seus 
 | `playwright-cli` | Abre o navegador, clica, preenche formulário e tira print. Serve para testar o seu site. |
 | `image-to-code` | Gera primeiro a imagem do design e depois o código parecido com ela. Precisa de uma ferramenta de gerar imagem. |
 | `awesome-design-md` | Não é uma skill: é uma biblioteca com o design system de 84 marcas reais (Apple, Stripe, Linear, Airbnb...). Serve de referência para as outras. |
+| `desenvolvemais` | Não é uma skill: é um fluxo de trabalho profissional que o Claude instala no **seu projeto**: plano com testes, agentes revisores, CI no GitHub e deploy que volta sozinho se der erro. Veja a seção "desenvolvemais" abaixo. |
+
+## Instruções para a IA
+
+> Se você é o Claude (ou outra IA) e o aluno pediu para instalar este repositório, siga isto:
+>
+> 1. Clone o repositório em `~/skills_marcos` (se já existir, rode `git pull` lá dentro).
+> 2. Faça os passos 2 e 3 de "Como instalar" abaixo (copiar as skills e instalar o navegador do Playwright).
+> 3. O `desenvolvemais` **não** vai para `~/.claude/skills`. Ele fica em `~/skills_marcos/desenvolvemais` e só é
+>    aplicado num projeto quando o aluno pedir. Aí você lê `~/skills_marcos/desenvolvemais/INSTALAR.md` e segue as
+>    etapas dele, com `<KIT>` = `~/skills_marcos/desenvolvemais`.
+> 4. No fim, diga ao aluno o que foi instalado e como pedir cada coisa.
 
 ## Como instalar
 
@@ -51,6 +63,24 @@ Skills para o Claude Code ajudar você a criar interfaces bonitas e testar seus 
 
 Para pegar as atualizações depois: `cd ~/skills_marcos && git pull` e copie de novo.
 
+## desenvolvemais
+
+Um jeito profissional de trabalhar com o Claude no seu projeto: ele planeja com testes, revisa o próprio código com
+agentes, o GitHub bloqueia código com erro e o deploy testa a produção e volta sozinho se algo quebrar.
+Funciona com a assinatura do Claude Code e o GitHub grátis, sem chave de API.
+
+Para colocar no seu projeto, abra o Claude Code **dentro da pasta do projeto** e peça:
+
+> Leia `~/skills_marcos/desenvolvemais/INSTALAR.md` e configure esse fluxo no meu projeto.
+
+O Claude analisa o projeto, faz algumas perguntas e mostra o que vai criar antes de criar.
+
+Para trazer melhorias novas para um projeto que já usa:
+
+> Leia `~/skills_marcos/desenvolvemais/ATUALIZAR.md` e atualize meu projeto.
+
+A cópia daqui acompanha o repositório original: [MarquinhoCoelho/desenvolvemais](https://github.com/MarquinhoCoelho/desenvolvemais).
+
 ## Outras skills que valem a pena
 
 Elas não estão neste repositório porque têm os próprios donos. Instale direto da fonte:
@@ -73,3 +103,4 @@ Nunca coloque senha, token, chave de API ou arquivo `.env` numa skill nem neste 
 - `web-design-guidelines`: [Vercel](https://github.com/vercel-labs/web-interface-guidelines).
 - `playwright-cli`: Microsoft Playwright.
 - `LANDINGPAGES`: professor Marcos, juntando as anteriores.
+- `desenvolvemais`: professor Marcos, [MarquinhoCoelho/desenvolvemais](https://github.com/MarquinhoCoelho/desenvolvemais).

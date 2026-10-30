@@ -3,6 +3,6 @@
 *.pem
 *.key
 .linkedin-token
-*token*
+*.token
 _qa/
 node_modules/
