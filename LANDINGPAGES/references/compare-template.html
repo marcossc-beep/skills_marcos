@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparador de modelos</title>
+<style>
+  :root { --bg:#f6f5f2; --surface:#fff; --text:#16150f; --muted:#6b6a63; --line:#e4e2db; --accent:#1f4fff; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#111110; --surface:#1b1b19; --text:#f1f0ea; --muted:#9a998f; --line:#2c2c29; --accent:#7b9bff; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header, main { max-width:1400px; margin:0 auto; padding:24px 16px; }
+  h1 { font-size:clamp(1.5rem,3vw,2.2rem); margin:0 0 4px; letter-spacing:-.02em; }
+  header p { margin:0; color:var(--muted); }
+  .bar { display:flex; gap:8px; margin-top:16px; }
+  .bar button { font:inherit; padding:10px 16px; border:1px solid var(--line); background:var(--surface); color:var(--text); border-radius:10px; cursor:pointer; min-height:44px; }
+  .bar button[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+  article { background:var(--surface); border:1px solid var(--line); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; }
+  .thumb { height:460px; overflow:auto; background:var(--bg); border-bottom:1px solid var(--line); }
+  .thumb img { display:block; width:100%; height:auto; }
+  .body { padding:16px; display:grid; gap:8px; }
+  h2 { margin:0; font-size:1.15rem; }
+  .body p { margin:0; color:var(--muted); font-size:.95rem; }
+  .actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
+  a.btn { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border-radius:10px; text-decoration:none; font-weight:600; background:var(--accent); color:#fff; }
+  a.btn.ghost { background:transparent; color:var(--text); border:1px solid var(--line); }
+  a:focus-visible, button:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Compare os modelos</h1>
+  <p>Role cada miniatura para ver a página inteira. Abra o modelo para testar de verdade.</p>
+  <div class="bar" role="group" aria-label="Visualização">
+    <button type="button" aria-pressed="true" data-w="1440">Desktop</button>
+    <button type="button" aria-pressed="false" data-w="390">Mobile</button>
+  </div>
+</header>
+<main>
+  <div class="grid">
+    <!-- Repita um <article> por modelo. Troque nome, direção, caminhos. -->
+    <article>
+      <div class="thumb"><img data-shot="v1/_qa/full-{w}.png" alt="Modelo 1, página inteira"></div>
+      <div class="body">
+        <h2>Modelo 1 — NOME DA DIREÇÃO</h2>
+        <p>Uma frase: paleta, tipografia e sensação.</p>
+        <div class="actions"><a class="btn" href="v1/index.html">Abrir modelo</a></div>
+      </div>
+    </article>
+  </div>
+</main>
+<script>
+  const imgs = document.querySelectorAll('img[data-shot]');
+  const btns = document.querySelectorAll('.bar button');
+  function setW(w) {
+    imgs.forEach(i => i.src = i.dataset.shot.replace('{w}', w));
+    btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.w === w)));
+  }
+  btns.forEach(b => b.addEventListener('click', () => setW(b.dataset.w)));
+  setW('1440');
+</script>
+</body>
+</html>
